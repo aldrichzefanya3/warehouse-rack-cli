@@ -1,9 +1,15 @@
 #! /usr/bin/env node
 
+const fs = require('fs');
+const path = require('path');
 const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout,
     prompt: '$ '
+})
+
+const readFile = require('readline').createInterface({
+    input: fs.createReadStream(path.join(__dirname, '../', 'input_data.txt'))
 })
 
 const Slot = require('./repositories/slot_repository');
@@ -20,7 +26,14 @@ const stockKeepingUnit = new StockKeepingUnit();
 readline.prompt()
 
 readline.on('line', input => {
+    runCommand(input);
+})
 
+readFile.on('line', input => {
+    runCommand(input);
+})
+
+function runCommand(input){
     const command = (input.split(' ')[0]).toLowerCase();
     
     switch(command) {
@@ -62,7 +75,7 @@ readline.on('line', input => {
         default:
             readline.close()
     }
-})
+} 
 
 function determineMaximumSlot(input) {
     const quantity = input.split(' ')[1];
