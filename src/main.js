@@ -72,6 +72,8 @@ function runCommand(input){
             
             readline.prompt();
             break;
+        case Command.EXIT:
+            readline.close();
         default:
             readline.close()
     }
