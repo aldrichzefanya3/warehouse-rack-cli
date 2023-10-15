@@ -1,0 +1,15 @@
+{
+  "name": "warehouse_rack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "bin": {
+    "warehouse-rack": "./bin/main.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aldrich Zefanya",
+  "license": "ISC",
+  "type": "module"
+}
