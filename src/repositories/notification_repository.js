@@ -1,3 +1,5 @@
+const Type = require('../enums/type_enum');
+
 class Notification {
     constructor() {
         this.maxCapacity = 0;
@@ -58,6 +60,40 @@ class Notification {
 
         if (status !== true) {
             console.log('Not Found');
+        }
+
+        return;
+    }
+
+    findNotificationByFilter(filter, type) {
+        let status = false;
+        let slotNumbers = [];
+        let skuNumbers = [];
+
+        for (const data  of this.data) {
+            const tempData = data.split(' ');
+
+            let search = tempData.indexOf(filter);
+
+            if (search !== -1) {
+                status = true;
+
+                if (type !== Type.SLOT_NUMBER){
+                    skuNumbers.push(tempData[1]);
+                } else {
+                    slotNumbers.push(tempData[0]);
+                }
+            }
+        }
+        
+        if (status !== true) {
+            console.log('Not Found');
+        } else {
+            if (type !== Type.SLOT_NUMBER) {
+                console.log(skuNumbers.toString())
+            } else {
+                console.log(slotNumbers.toString())
+            }
         }
 
         return;

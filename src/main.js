@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 
-const fs = require('fs');
 const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -11,7 +10,8 @@ const Slot = require('./repositories/slot_repository');
 const StockKeepingUnit = require('./repositories/sku_number_repository');
 const Notification = require('./repositories/notification_repository');
 
-const Command = require('./enums/command.enum')
+const Command = require('./enums/command_enum');
+const Type = require('./enums/type_enum');
 
 const slot = new Slot();
 const notification = new Notification();
@@ -49,8 +49,15 @@ readline.on('line', input => {
 
             readline.prompt();
             break;
-        case Command.STATUS:
-            //
+        case Command.SKU_NUMBERS_FOR_PRODUCT_WITH_EXP_DATE:
+            findSKUNumbersForProductByExpiredDate(input)
+            
+            readline.prompt();
+            break;
+        case Command.SLOT_NUMBERS_FOR_PRODUCT_WITH_EXP_DATE:
+            findSlotNumbersForProductByExpiredDate(input)
+            
+            readline.prompt();
             break;
         default:
             readline.close()
@@ -106,4 +113,18 @@ function findSlotNumberBySKUNumber(input) {
     const skuNumber = input.split(' ')[1];
 
     notification.findSlotNumberBySKUNumber(skuNumber);
+}
+
+function findSKUNumbersForProductByExpiredDate(input) {
+    determineFindFilter(input, Type.SKU_NUMBER);
+}
+
+function findSlotNumbersForProductByExpiredDate(input) {
+    determineFindFilter(input, Type.SLOT_NUMBER);
+}
+
+function determineFindFilter(input, type) {
+    const date = input.split(' ')[1];
+
+    notification.findNotificationByFilter(date, type);
 }
