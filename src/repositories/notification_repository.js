@@ -2,7 +2,6 @@ class Notification {
     constructor() {
         this.maxCapacity = 0;
         this.data = [];
-        this.index = 0;
         this.currentIndex = 1;
     }
 
@@ -41,8 +40,27 @@ class Notification {
         return;
     }
 
-    findSlotNumberBySKUNumber() {
-        
+    findSlotNumberBySKUNumber(skuNumber) {
+        let status = false;
+
+        for (const data  of this.data) {
+            const tempData = data.split(' ');
+
+            let search = tempData.indexOf(skuNumber);
+
+            if (search !== -1) {
+                status = true;
+                console.log(tempData[0]);
+
+                break;
+            }
+        }
+
+        if (status !== true) {
+            console.log('Not Found');
+        }
+
+        return;
     }
 }
 

@@ -44,8 +44,10 @@ readline.on('line', input => {
 
             readline.prompt();
             break;
-        case Command.STATUS:
-            //
+        case Command.SLOT_NUMBER_FOR_SKU_NUMBER:
+            findSlotNumberBySKUNumber(input);    
+
+            readline.prompt();
             break;
         case Command.STATUS:
             //
@@ -98,4 +100,10 @@ function removeSKUNumberBySlotNumber(input) {
 
 function printNotificationStatus() {
     notification.printNotification();
+}
+
+function findSlotNumberBySKUNumber(input) {
+    const skuNumber = input.split(' ')[1];
+
+    notification.findSlotNumberBySKUNumber(skuNumber);
 }
