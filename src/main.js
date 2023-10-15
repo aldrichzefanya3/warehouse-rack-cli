@@ -9,7 +9,7 @@ const readline = require('readline').createInterface({
 })
 
 const readFile = require('readline').createInterface({
-    input: fs.createReadStream(path.join(__dirname, '../', 'input_data.txt'))
+    input: fs.createReadStream(path.join(__dirname, '../', 'file_input.txt'))
 })
 
 const Slot = require('./repositories/slot_repository');
@@ -35,7 +35,7 @@ readFile.on('line', input => {
 
 function runCommand(input){
     const command = (input.split(' ')[0]).toLowerCase();
-    
+    // console.log(process.argv)
     switch(command) {
         case Command.CREATE_WAREHOUSE_RACK:
             determineMaximumSlot(input);
