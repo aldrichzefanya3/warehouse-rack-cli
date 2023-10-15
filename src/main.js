@@ -30,14 +30,22 @@ readline.on('line', input => {
             readline.prompt()
             break;
         case Command.RACK:
-            addStockIntoSlot(input);    
+            addSKUNumber(input);    
 
             readline.prompt()
             break;
         case Command.RACK_OUT:
-            removeSlot(input);
+            removeSKUNumberBySlotNumber(input);
 
             readline.prompt();
+            break;
+        case Command.STATUS:
+            printNotificationStatus();
+
+            readline.prompt();
+            break;
+        case Command.STATUS:
+            //
             break;
         case Command.STATUS:
             //
@@ -60,7 +68,7 @@ function determineMaximumSlot(input) {
     notification.setMaximumCapacity(slot.slot);
 }
 
-function addStockIntoSlot(input) {
+function addSKUNumber(input) {
     const skuNumber = input.split(' ')[1];
     const expiredDate = input.split(' ')[2];
 
@@ -70,12 +78,24 @@ function addStockIntoSlot(input) {
         return;
     }
 
+
     const data = stockKeepingUnit.setStockKeepingUnitNumberAndExpiredDate(notification.currentIndex, skuNumber, expiredDate);
     
-    notification.setData(data);
-
+    notification.setNotification(data);
 }
 
-function removeSlot(index) {
-    
+function removeSKUNumberBySlotNumber(input) {
+    const index = input.split(' ')[1];
+
+    if (index > notification.maxCapacity || index <= 0) {
+        console.log('Invalid command! Index out of range!');
+        
+        return;
+    }
+
+    notification.removeNotification(index);
+}
+
+function printNotificationStatus() {
+    notification.printNotification();
 }

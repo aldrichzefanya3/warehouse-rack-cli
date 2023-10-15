@@ -12,7 +12,7 @@ class Notification {
         return this.maxCapacity;
     }
 
-    setData(skuNumber){
+    setNotification(skuNumber){
         this.data.push(skuNumber);
 
         this.currentIndex++;
@@ -20,14 +20,29 @@ class Notification {
         return;
     }
 
-    getData(){
+    getNotification(){
         return this.data;
     }
 
-    removeData(index){
-        this.data[index] = null;
+    removeNotification(index){
+        this.data[index - 1] = null;
+        
+        console.log(`Slot number ${index} is free`)
 
-        return this.data;
+        return;
+    }
+
+    printNotification(){
+        console.log(`Slot No. SKU no. Exp Date`);
+        this.data.map((d) => {
+            console.log(d);
+        })
+
+        return;
+    }
+
+    findSlotNumberBySKUNumber() {
+        
     }
 }
 
