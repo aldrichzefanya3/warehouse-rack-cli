@@ -11,11 +11,6 @@ $ sudo apt update
 $ sudo apt install nodejs
 $ sudo apt install npm
 ```
-To Install Dependecies:
-
-```bash
-$ npm install
-```
 
 There is 2 way to run the program and launch the shell:
 
