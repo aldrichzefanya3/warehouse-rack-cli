@@ -8,12 +8,8 @@ const readline = require('readline').createInterface({
     prompt: '$ '
 })
 
-const readFile = require('readline').createInterface({
-    input: fs.createReadStream(path.join(__dirname, '../', 'file_input.txt'))
-})
-
 const Slot = require('./repositories/slot_repository');
-const StockKeepingUnit = require('./repositories/sku_number_repository');
+const StockKeepingUnit = require('./repositories/sku_repository');
 const Notification = require('./repositories/notification_repository');
 
 const Command = require('./enums/command_enum');
@@ -23,19 +19,25 @@ const slot = new Slot();
 const notification = new Notification();
 const stockKeepingUnit = new StockKeepingUnit();
 
+if (process.argv[2] == 'file_input.txt' ) {
+    const readFile = require('readline').createInterface({
+        input: fs.createReadStream(path.join(__dirname, '../', process.argv[2]))
+    })
+    
+    readFile.on('line', input => {
+        runCommand(input);
+    })
+}
+
 readline.prompt()
 
 readline.on('line', input => {
     runCommand(input);
 })
 
-readFile.on('line', input => {
-    runCommand(input);
-})
-
 function runCommand(input){
     const command = (input.split(' ')[0]).toLowerCase();
-    // console.log(process.argv)
+
     switch(command) {
         case Command.CREATE_WAREHOUSE_RACK:
             determineMaximumSlot(input);
@@ -83,7 +85,7 @@ function determineMaximumSlot(input) {
     const quantity = input.split(' ')[1];
 
     if (!quantity) {
-        console.log('Invalid command! ---- command create_warehouse_rack input_capacity');
+        console.log('Error: Invalid command!');
         return;
     }
 
@@ -103,7 +105,7 @@ function addSKUNumber(input) {
     }
 
 
-    const data = stockKeepingUnit.setStockKeepingUnitNumberAndExpiredDate(notification.currentIndex, skuNumber, expiredDate);
+    const data = stockKeepingUnit.setStockKeepingUnit(notification.currentIndex, skuNumber, expiredDate);
     
     notification.setNotification(data);
 }
@@ -112,7 +114,7 @@ function removeSKUNumberBySlotNumber(input) {
     const index = input.split(' ')[1];
 
     if (index > notification.maxCapacity || index <= 0) {
-        console.log('Invalid command! Index out of range!');
+        console.log('Error: Invalid command! Index out of range!');
         
         return;
     }

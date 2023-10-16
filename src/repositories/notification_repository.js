@@ -18,7 +18,7 @@ class Notification {
 
         this.currentIndex++;
     
-        return;
+        return this.data, this.currentIndex;
     }
 
     getNotification(){
@@ -30,7 +30,7 @@ class Notification {
         
         console.log(`Slot number ${index} is free`)
 
-        return;
+        return this.data[index-1];
     }
 
     printNotification(){
@@ -62,7 +62,7 @@ class Notification {
             console.log('Not Found');
         }
 
-        return;
+        return status;
     }
 
     findNotificationByFilter(filter, type) {
@@ -96,7 +96,7 @@ class Notification {
             }
         }
 
-        return;
+        return status;
     }
 }
 

@@ -11,14 +11,33 @@ $ sudo apt update
 $ sudo apt install nodejs
 $ sudo apt install npm
 ```
-
-There is 2 way to run the program and launch the shell:
+To Install Dependecies:
 
 ```bash
-$ bin/warehouse_rack
+warehouse_rack$ npm install
+```
+
+To Run Test:
+
+```bash
+warehouse_rack$ npm test
+```
+
+There are 2 ways to run the program and launch the shell:
+
+Manual Input:
+
+```bash
+warehouse_rack$ bin/warehouse_rack
 ```
 or
 ```bash
-$ npm link
-$ exe
+warehouse_rack$ npm link
+warehouse_rack$ exe
+```
+
+File Input:
+
+```bash
+warehouse_rack$ bin/warehouse_rack file_input.txt
 ```

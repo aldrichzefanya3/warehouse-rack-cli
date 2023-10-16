@@ -7,9 +7,12 @@
     "exe": "./src/main.js"
   },
   "scripts": {
-    "test": "node ./tests/warehouse_rack_spec_test.js"
+    "test": "jest"
   },
   "author": "Aldrich Zefanya",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
 }

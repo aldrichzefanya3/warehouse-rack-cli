@@ -7,7 +7,7 @@
 # This variable contains absolute path of this `warehouse_rack` script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-node ./src/main.js
+node ./src/main.js $1
 
 # Use DIR variable above to pinpoint your jar/executable/main class
 # e.g.
