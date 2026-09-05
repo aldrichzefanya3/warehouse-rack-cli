@@ -1,0 +1,18 @@
+{
+  "name": "warehouse_rack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main.js",
+  "bin": {
+    "exe": "./src/main.js"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Aldrich Zefanya",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
